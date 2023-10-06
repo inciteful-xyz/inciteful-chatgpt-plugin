@@ -3,11 +3,15 @@ from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 
-from app.inciteful_models import Paper
-from .inciteful_client import IncitefulClient
+from decouple import config
+
+import uvicorn
+
+from inciteful_models import Paper
+from inciteful_client import IncitefulClient
 
 # Get contents of app_description.md
-with open("app/app_description.md", "r") as f:
+with open("app_description.md", "r") as f:
     description = f.read()
 
 
@@ -43,7 +47,8 @@ app = FastAPI(
     },
 )
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+static_folder = str(config("STATIC_FILES"))
+app.mount("/static", StaticFiles(directory=static_folder), name="static")
 
 
 inciteful = IncitefulClient()
@@ -402,3 +407,7 @@ async def similar_journals(
     ),
 ):
     return inciteful.query_multi_paper(paper_ids, similar_query)
+
+
+if __name__ == "__main__":
+    uvicorn.run("__main__:app", host="0.0.0.0", port=8080)

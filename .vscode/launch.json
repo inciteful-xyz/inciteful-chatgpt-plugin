@@ -6,12 +6,16 @@
   "configurations": [
     {
       "name": "Python: FastAPI",
+      "cwd": "${workspaceFolder}/app",
       "type": "python",
       "request": "launch",
       "module": "uvicorn",
-      "args": ["app.main:app", "--reload", "--port", "8090"],
+      "args": ["main:app", "--reload", "--port", "8090"],
       "jinja": true,
-      "justMyCode": true
+      "justMyCode": true,
+      "env": {
+        "STATIC_FILES": "static"
+      }
     }
   ]
 }
