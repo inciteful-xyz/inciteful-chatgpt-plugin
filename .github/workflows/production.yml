@@ -21,5 +21,5 @@ jobs:
       - name: Install caprover
         run: npm install -g caprover
       - name: Caprover Deploy Plugin
-        run: caprover deploy -h 'https://captain.cap.weishuhn.net' -p '${{ secrets.CAPROVER_PASSWORD }}' -b 'master' -a 'inciteful-chatgpt-plugin'
+        run: caprover deploy -h 'https://captain.cap.weishuhn.net' -p '${{ secrets.CAPROVER_PASSWORD }}' -b 'main' -a 'inciteful-chatgpt-plugin'
       
