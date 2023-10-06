@@ -1,4 +1,4 @@
 {
     "schemaVersion": 2,
-    "dockerfilePath": "./oa-loader.dockerfile"
+    "dockerfilePath": "./Dockerfile"
 }
